@@ -17,6 +17,7 @@ class menu(models.Model):
 class promociones(models.Model):
     nombre_promocion = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=50)
+    promocion_image = models.ImageField('view',blank=True,upload_to="media")
 
 class booking(models.Model):
     nombre_usuario = models.CharField(max_length=50)
@@ -24,17 +25,9 @@ class booking(models.Model):
     telefono = models.PositiveIntegerField()
     email = models.CharField(max_length=30)
     dia_hora_booking = models.DateTimeField()
-    solicitud_especial = models.CharField(max_length=50)
+    solicitud_especial = models.CharField(max_length=100)
 
 class restaurantes(models.Model):
     name_restaurant = models.CharField(max_length=50)
-    type_table_1 = models.CharField(max_length=50)
-    type_table_2 = models.CharField(max_length=50)
-    type_table_3 = models.CharField(max_length=50)
-    name_menu = models.CharField(max_length=50)
-    saucer_1 = models.CharField(max_length=50)
-    saucer_2 = models.CharField(max_length=50)
-    saucer_3 = models.CharField(max_length=50)
-    phone = models.PositiveIntegerField()
-    address = models.CharField(max_length=30)
+    descripcion = models.CharField(max_length=1024)
     restaurant_image = models.ImageField('view',blank=True,upload_to="media")

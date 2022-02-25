@@ -18,7 +18,7 @@ class menuSerializer(serializers.HyperlinkedModelSerializer):
 class promocionesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = promociones
-        fields = ['nombre_promocion', 'descripcion']
+        fields = ['nombre_promocion', 'descripcion','promocion_image']
 
 class bookingSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -28,5 +28,4 @@ class bookingSerializer(serializers.HyperlinkedModelSerializer):
 class restaurantesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = restaurantes
-        fields = ['name_restaurant', 'type_table_1', 'type_table_2','type_table_3','name_menu','saucer_1',
-                     'saucer_2', 'saucer_3', 'phone', 'address','restaurant_image']
+        fields = ['name_restaurant', 'descripcion','restaurant_image']
