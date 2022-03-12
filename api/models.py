@@ -11,10 +11,12 @@ class usuarios(models.Model):
     cellphone = models.PositiveIntegerField()
 
 class menu(models.Model):
+    restaurante_id = models.ForeignKey('restaurantes', on_delete=models.CASCADE)
     nombre_platillo = models.CharField(max_length=100)
     ingredientes = models.CharField(max_length=1024)
 
 class promociones(models.Model):
+    restaurante_id = models.ForeignKey('restaurantes', on_delete=models.CASCADE)
     nombre_promocion = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=1024)
     promocion_image = models.ImageField('view',blank=True,upload_to="media")
@@ -22,6 +24,7 @@ class promociones(models.Model):
 class booking(models.Model):
     nombre_usuario = models.CharField(max_length=50)
     apellido_usuario = models.CharField(max_length=50)
+    restaurante_id = models.ForeignKey('restaurantes', on_delete=models.CASCADE)
     telefono = models.PositiveIntegerField()
     email = models.CharField(max_length=30)
     dia_hora_booking = models.DateTimeField()
@@ -29,6 +32,7 @@ class booking(models.Model):
     number_people = models.PositiveBigIntegerField()
 
 class restaurantes(models.Model):
+    id = models.AutoField(primary_key=True)
     name_restaurant = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=1024)
     restaurant_image = models.ImageField('view',blank=True,upload_to="media")
