@@ -23,7 +23,7 @@ class promocionesSerializer(serializers.HyperlinkedModelSerializer):
 class bookingSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = booking
-        fields = ['nombre_usuario', 'apellido_usuario', 'telefono', 'email', 'dia_hora_booking', 'solicitud_especial']
+        fields = ['nombre_usuario', 'apellido_usuario', 'telefono', 'email', 'dia_hora_booking', 'solicitud_especial', 'number_people']
 
 class restaurantesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
