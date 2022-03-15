@@ -26,7 +26,7 @@ class booking(models.Model):
     email = models.CharField(max_length=30)
     dia_hora_booking = models.DateTimeField()
     solicitud_especial = models.CharField(max_length=1024)
-    number_people = models.PositiveBigIntegerField()
+    number_people = models.PositiveIntegerField()
 
 class restaurantes(models.Model):
     name_restaurant = models.CharField(max_length=100)
