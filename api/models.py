@@ -8,7 +8,7 @@ class usuarios(models.Model):
     name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     contactmail = models.CharField(max_length=30)
-    cellphone = models.PositiveIntegerField()
+    cellphone = models.BigIntegerField()
 
 class menu(models.Model):
     nombre_platillo = models.CharField(max_length=100)
@@ -25,7 +25,7 @@ class booking(models.Model):
     restaurante_id = models.AutoField(primary_key=True)
     nombre_usuario = models.CharField(max_length=50)
     apellido_usuario = models.CharField(max_length=50)
-    telefono = models.PositiveIntegerField()
+    telefono = models.BigIntegerField()
     email = models.CharField(max_length=30)
     dia_hora_booking = models.DateTimeField()
     solicitud_especial = models.CharField(max_length=1024)
