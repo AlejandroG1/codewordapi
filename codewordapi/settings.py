@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from importlib.resources import path
 import os
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-50ifisx$vxb!%*9+1qafc%l_z!g9-q94f1^#g2=h9f@7co5v5&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -36,11 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework_simplejwt.token_blacklist',
     'api',
     'corsheaders',
     'rest_framework',
-    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
 ]
+
+AUTH_USER_MODEL = "api.User"
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -78,7 +82,7 @@ WSGI_APPLICATION = 'codewordapi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
+""" DATABASES = {
     "default": {
         'ENGINE': "mssql",
         'NAME': "codeword",
@@ -89,14 +93,16 @@ DATABASES = {
         'OPTIONS': {"driver": "ODBC Driver 17 for SQL Server", 
         },
     },
-}
+} """
 #DESCOMENTAR SI SE HACE PRUEBAS EN LOCAL REPETIR MIGRACIONES
-""" DATABASES = {
+
+
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'mydatabase',
     }
-} """
+}
 
 
 
@@ -150,11 +156,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 5,
     'EXEPTION_HANDLER':'utils.exeptions.exeption_message',
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+#JWT SETTINGS
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=24),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=2),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN': False,
+}

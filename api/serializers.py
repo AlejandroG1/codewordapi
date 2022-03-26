@@ -1,14 +1,23 @@
 from rest_framework import serializers
-from api.models import usuarios
+from api.models import User
 from api.models import restaurantes
 from api.models import menu
 from api.models import promociones
 from api.models import booking
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-class usuariosSerializer(serializers.HyperlinkedModelSerializer):
+class CustomTokenObtainSerializer(TokenObtainPairSerializer): 
+    pass
+
+class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = usuarios
-        fields = ['name', 'last_name', 'contactmail', 'cellphone']
+        model =User
+        fields = ['username', 'email', 'name']
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id','permission', 'status', 'name', 'last_name', 'email', 'cellphone', 'username']
 
 class menuSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -29,3 +38,8 @@ class restaurantesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = restaurantes
         fields = ['name_restaurant', 'descripcion','restaurant_image']
+
+
+
+
+
