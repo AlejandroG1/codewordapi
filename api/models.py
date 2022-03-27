@@ -51,17 +51,20 @@ class User(AbstractBaseUser,PermissionsMixin):
 
 
 class menu(models.Model):
+    id = models.AutoField(primary_key=True)
     nombre_platillo = models.CharField(max_length=100)
     ingredientes = models.CharField(max_length=1024)
     restaurante_id = models.ForeignKey("restaurantes", on_delete=models.CASCADE)
 
 class promociones(models.Model):
+    id = models.AutoField(primary_key=True)
     nombre_promocion = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=1024)
     promocion_image = models.ImageField('view',blank=True,upload_to="media")
     restaurante_id = models.ForeignKey("restaurantes", on_delete=models.CASCADE)
 
 class booking(models.Model):
+    id = models.AutoField(primary_key=True)
     restaurante_id = models.AutoField(primary_key=True)
     nombre_usuario = models.CharField(max_length=50)
     apellido_usuario = models.CharField(max_length=50)
@@ -73,6 +76,7 @@ class booking(models.Model):
     restaurante_id = models.ForeignKey("restaurantes", on_delete=models.CASCADE)
 
 class restaurantes(models.Model):
+    id = models.AutoField(primary_key=True)
     name_restaurant = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=1024)
     restaurant_image = models.ImageField('view',blank=True,upload_to="media")

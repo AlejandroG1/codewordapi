@@ -22,22 +22,22 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class menuSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = menu
-        fields = ['nombre_platillo', 'ingredientes', 'restaurante_id']
+        fields = ['id','nombre_platillo', 'ingredientes', 'restaurante_id']
 
 class promocionesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = promociones
-        fields = ['nombre_promocion', 'descripcion','promocion_image', 'restaurante_id']
+        fields = ['id','nombre_promocion', 'descripcion','promocion_image', 'restaurante_id']
 
 class bookingSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = booking
-        fields = ['nombre_usuario', 'apellido_usuario', 'telefono', 'email', 'dia_hora_booking', 'solicitud_especial', 'number_people','restaurante_id']
+        fields = ['id','nombre_usuario', 'apellido_usuario', 'telefono', 'email', 'dia_hora_booking', 'solicitud_especial', 'number_people','restaurante_id']
 
 class restaurantesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = restaurantes
-        fields = ['name_restaurant', 'descripcion','restaurant_image']
+        fields = ['id','name_restaurant', 'descripcion','restaurant_image']
 
 
 
