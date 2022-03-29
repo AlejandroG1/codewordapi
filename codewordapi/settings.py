@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'codewordapi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-""" DATABASES = {
+DATABASES = {
     "default": {
         'ENGINE': "mssql",
         'NAME': "codeword",
@@ -94,15 +94,6 @@ WSGI_APPLICATION = 'codewordapi.wsgi.application'
         'OPTIONS': {"driver": "ODBC Driver 17 for SQL Server", 
         },
     },
-} """
-#DESCOMENTAR SI SE HACE PRUEBAS EN LOCAL REPETIR MIGRACIONES
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
-    }
 }
 
 
