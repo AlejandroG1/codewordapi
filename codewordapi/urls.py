@@ -4,11 +4,16 @@ from rest_framework import routers
 from django.urls import path, include, re_path
 from django.conf.urls.static import static
 from django.views.static import serve
-
 from api import views
+from api.views import login, logout
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView,
+)
 
 router = routers.DefaultRouter()
-router.register(r'usuarios', views.usuariosViewSet)
+router.register(r'User', views.usuariosViewSet)
 router.register(r'restaurantes', views.restaurantesViewSet)
 router.register(r'menu', views.menuViewSet)
 router.register(r'promociones', views.promocionesViewSet)
@@ -17,7 +22,10 @@ router.register(r'booking', views.bookingViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('login/', login.as_view(), name= 'login'),
+    path('logout/', logout.as_view(), name='logout'),
+    #usar login path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
