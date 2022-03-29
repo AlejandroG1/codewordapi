@@ -31,7 +31,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.CharField(max_length=255, unique=True)
-    cellphone = models.IntegerField()
+    cellphone = models.BigIntegerField()
     username = models.CharField(max_length=15, unique=True, blank=False, null=False)
     permission = models.IntegerField(default = 1)
     status = models.IntegerField(default = 1)
@@ -50,6 +50,7 @@ class User(AbstractBaseUser,PermissionsMixin):
 #Modelos accesibles despues de logeo
 
 
+
 class menu(models.Model):
     nombre_platillo = models.CharField(max_length=100)
     ingredientes = models.CharField(max_length=1024)
@@ -65,7 +66,7 @@ class booking(models.Model):
     restaurante_id = models.AutoField(primary_key=True)
     nombre_usuario = models.CharField(max_length=50)
     apellido_usuario = models.CharField(max_length=50)
-    telefono = models.PositiveIntegerField()
+    telefono = models.BigIntegerField()
     email = models.CharField(max_length=30)
     dia_hora_booking = models.DateTimeField()
     solicitud_especial = models.CharField(max_length=1024)
