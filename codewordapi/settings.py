@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
 ]
 
-AUTH_USER_MODEL = "api.User"
+AUTH_USER_MODEL = "api.users"
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'codewordapi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-""" DATABASES = {
+DATABASES = {
     "default": {
         'ENGINE': "mssql",
         'NAME': "codeword",
@@ -95,14 +95,14 @@ WSGI_APPLICATION = 'codewordapi.wsgi.application'
         },
     },
 }
- """
-DATABASES = {
+
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'mydatabase',
     }
 }
-
+ """
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
