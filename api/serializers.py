@@ -4,6 +4,7 @@ from api.models import restaurants
 from api.models import menus
 from api.models import promotions
 from api.models import bookings
+from api.models import type_users
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class CustomTokenObtainSerializer(TokenObtainPairSerializer): 
@@ -38,6 +39,11 @@ class restaurantsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = restaurants
         fields = ['id','name_restaurant', 'descripcion','restaurant_image']
+
+class type_usersSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = type_users
+        fields = ['id','id_user', 'type_users']
 
 
 
