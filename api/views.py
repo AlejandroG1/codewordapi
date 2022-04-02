@@ -1,39 +1,39 @@
 # Create your views here.
 from rest_framework import viewsets
 from rest_framework_simplejwt.tokens import RefreshToken
-from api.models import restaurantes, User, menu, promociones, booking
+from api.models import restaurants, users, menus, promotions, bookings
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import menuSerializer,CustomUserSerializer, restaurantesSerializer, UserSerializer, promocionesSerializer, bookingSerializer, CustomTokenObtainSerializer
+from .serializers import menusSerializer,CustomusersSerializer, restaurantsSerializer, usersSerializer, promotionsSerializer, bookingsSerializer, CustomTokenObtainSerializer
 
-class usuariosViewSet(viewsets.ModelViewSet):
+class usersViewSet(viewsets.ModelViewSet):
         permission_classes = (IsAuthenticated,)
-        queryset = User.objects.all()
-        serializer_class = UserSerializer
+        queryset = users.objects.all()
+        serializer_class = usersSerializer
     
-class restaurantesViewSet(viewsets.ModelViewSet):
+class restaurantsViewSet(viewsets.ModelViewSet):
         permission_classes = (IsAuthenticated,)
-        queryset = restaurantes.objects.all()
-        serializer_class = restaurantesSerializer
+        queryset = restaurants.objects.all()
+        serializer_class = restaurantsSerializer
 
-class menuViewSet(viewsets.ModelViewSet):
+class menusViewSet(viewsets.ModelViewSet):
         permission_classes = (IsAuthenticated,)
-        queryset = menu.objects.all()
-        serializer_class = menuSerializer
+        queryset = menus.objects.all()
+        serializer_class = menusSerializer
 
-class promocionesViewSet(viewsets.ModelViewSet):
+class promotionsViewSet(viewsets.ModelViewSet):
         permission_classes = (IsAuthenticated,)
-        queryset = promociones.objects.all()
-        serializer_class = promocionesSerializer
+        queryset = promotions.objects.all()
+        serializer_class = promotionsSerializer
 
-class bookingViewSet(viewsets.ModelViewSet):
+class bookingsViewSet(viewsets.ModelViewSet):
         permission_classes = (IsAuthenticated,)
-        queryset = booking.objects.all()
-        serializer_class = bookingSerializer
+        queryset = bookings.objects.all()
+        serializer_class = bookingsSerializer
 
 
 class login(TokenObtainPairView):
@@ -46,7 +46,7 @@ class login(TokenObtainPairView):
                 if user:
                         login_serializer = self.serializer_class(data=request.data)
                         if login_serializer.is_valid():
-                                user_serializer = CustomUserSerializer(user)
+                                user_serializer = CustomusersSerializer(user)
                                 return Response({
                                         'token': login_serializer.validated_data.get('access'),
                                         'refresh-token': login_serializer.validated_data.get('refresh'),
@@ -59,7 +59,7 @@ class login(TokenObtainPairView):
 
 class logout(GenericAPIView):
         def post(self, request, *args, **kwargs):
-                user = User.objects.filter(id=request.data.get('username', 0))
+                user = users.objects.filter(id=request.data.get('username', 0))
                 print(user)
                 if user.exists():
                         RefreshToken.for_user(user.first())

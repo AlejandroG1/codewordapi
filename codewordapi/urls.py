@@ -13,11 +13,11 @@ from rest_framework_simplejwt.views import (
 )
 
 router = routers.DefaultRouter()
-router.register(r'User', views.usuariosViewSet)
-router.register(r'restaurantes', views.restaurantesViewSet)
-router.register(r'menu', views.menuViewSet)
-router.register(r'promociones', views.promocionesViewSet)
-router.register(r'booking', views.bookingViewSet)
+router.register(r'users', views.usersViewSet)
+router.register(r'restaurants', views.restaurantsViewSet)
+router.register(r'menus', views.menusViewSet)
+router.register(r'promotions', views.promotionsViewSet)
+router.register(r'bookings', views.bookingsViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

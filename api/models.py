@@ -27,7 +27,7 @@ class UsuarioManager(BaseUserManager):
         return self._create_user(name, last_name, email ,username,cellphone ,password , True, True , 2, 2,  **extra_fields)
 
 
-class User(AbstractBaseUser,PermissionsMixin):
+class users(AbstractBaseUser,PermissionsMixin):
     name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.CharField(max_length=255, unique=True)
@@ -50,20 +50,20 @@ class User(AbstractBaseUser,PermissionsMixin):
 #Modelos accesibles despues de logeo
 
 
-class menu(models.Model):
+class menus(models.Model):
     id = models.AutoField(primary_key=True)
     nombre_platillo = models.CharField(max_length=100)
     ingredientes = models.CharField(max_length=1024)
     restaurante_id = models.ForeignKey("restaurantes", on_delete=models.CASCADE)
 
-class promociones(models.Model):
+class promotions(models.Model):
     id = models.AutoField(primary_key=True)
     nombre_promocion = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=1024)
     promocion_image = models.ImageField('view',blank=True,upload_to="media")
     restaurante_id = models.ForeignKey("restaurantes", on_delete=models.CASCADE)
 
-class booking(models.Model):
+class bookings(models.Model):
     id = models.AutoField(primary_key=True)
     restaurante_id = models.AutoField(primary_key=True)
     nombre_usuario = models.CharField(max_length=50)
@@ -75,7 +75,7 @@ class booking(models.Model):
     number_people = models.PositiveIntegerField()
     restaurante_id = models.ForeignKey("restaurantes", on_delete=models.CASCADE)
 
-class restaurantes(models.Model):
+class restaurants(models.Model):
     id = models.AutoField(primary_key=True)
     name_restaurant = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=1024)
