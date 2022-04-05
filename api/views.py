@@ -34,6 +34,8 @@ class bookingViewSet(viewsets.ModelViewSet):
         permission_classes = (IsAuthenticated,)
         queryset = booking.objects.all()
         serializer_class = bookingSerializer
+        import envioCorreo
+        envioCorreo.__init__(data=booking.objects.all())
 
 
 class login(TokenObtainPairView):
