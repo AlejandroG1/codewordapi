@@ -5,7 +5,6 @@ from api.models import menus
 from api.models import promotions
 from api.models import bookings
 from api.models import type_users
-
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class CustomTokenObtainSerializer(TokenObtainPairSerializer): 

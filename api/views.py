@@ -39,8 +39,7 @@ class bookingsViewSet(viewsets.ModelViewSet):
         permission_classes = (IsAuthenticated,)
         queryset = bookings.objects.all()
         serializer_class = bookingsSerializer
-        import envioCorreo
-        envioCorreo.__init__(data=bookings.objects.all())
+
 
 class login(TokenObtainPairView):
         serializer_class = CustomTokenObtainSerializer
@@ -55,7 +54,7 @@ class login(TokenObtainPairView):
                                 user_serializer = CustomusersSerializer(user)
                                 return Response({
                                         'token': login_serializer.validated_data.get('access'),
-                                        'refresh_token': login_serializer.validated_data.get('refresh'),
+                                        'refresh-token': login_serializer.validated_data.get('refresh'),
                                         'user': user_serializer.data,
                                         'message': 'inicio de sesion correcto'
                                 }, status = status.HTTP_200_OK)
