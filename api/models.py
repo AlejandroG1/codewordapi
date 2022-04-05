@@ -28,11 +28,10 @@ class UsuarioManager(BaseUserManager):
 
 
 class users(AbstractBaseUser,PermissionsMixin):
-    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.CharField(max_length=255, unique=True)
-    cellphone = models.IntegerField()
+    cellphone = models.BigIntegerField()
     username = models.CharField(max_length=15, unique=True, blank=False, null=False)
     permission = models.IntegerField(default = 1)
     status = models.IntegerField(default = 1)
@@ -52,13 +51,11 @@ class users(AbstractBaseUser,PermissionsMixin):
 
 
 class menus(models.Model):
-    id = models.AutoField(primary_key=True)
     nombre_platillo = models.CharField(max_length=100)
     ingredientes = models.CharField(max_length=1024)
     restaurante_id = models.ForeignKey("restaurants", on_delete=models.CASCADE)
 
 class promotions(models.Model):
-    id = models.AutoField(primary_key=True)
     nombre_promocion = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=1024)
     promocion_image = models.ImageField('view',blank=True,upload_to="media")
@@ -69,7 +66,7 @@ class bookings(models.Model):
     restaurante_id = models.AutoField(primary_key=True)
     nombre_usuario = models.CharField(max_length=50)
     apellido_usuario = models.CharField(max_length=50)
-    telefono = models.PositiveIntegerField()
+    telefono = models.BigIntegerField()
     email = models.CharField(max_length=30)
     dia_hora_booking = models.DateTimeField()
     solicitud_especial = models.CharField(max_length=1024)
@@ -77,7 +74,6 @@ class bookings(models.Model):
     restaurante_id = models.ForeignKey("restaurants", on_delete=models.CASCADE)
 
 class restaurants(models.Model):
-    id = models.AutoField(primary_key=True)
     name_restaurant = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=1024)
     restaurant_image = models.ImageField('view',blank=True,upload_to="media")
