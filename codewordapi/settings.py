@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
 ]
 
-AUTH_USER_MODEL = "api.User"
+AUTH_USER_MODEL = "api.users"
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
