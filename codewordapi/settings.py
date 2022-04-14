@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'codewordapi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-""" DATABASES = {
+DATABASES = {
     "default": {
         'ENGINE': "mssql",
         'NAME': "codeword",
@@ -94,16 +94,16 @@ WSGI_APPLICATION = 'codewordapi.wsgi.application'
         'OPTIONS': {"driver": "ODBC Driver 17 for SQL Server", 
         },
     },
-} """
+}
 #DESCOMENTAR SI SE HACE PRUEBAS EN LOCAL REPETIR MIGRACIONES
 
 
-DATABASES = {
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'mydatabase',
     }
-}
+}"""
 
 
 
@@ -168,8 +168,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #JWT SETTINGS
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(hours=24),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=2),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=35),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
     'UPDATE_LAST_LOGIN': False,
