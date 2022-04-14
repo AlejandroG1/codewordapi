@@ -1,6 +1,3 @@
-
-
-
 def __init__(data):
     import smtplib
     from email.message import EmailMessage  

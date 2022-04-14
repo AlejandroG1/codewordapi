@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView
+from api import envioCorreo
 from .serializers import menusSerializer,CustomusersSerializer, restaurantsSerializer, usersSerializer, promotionsSerializer, bookingsSerializer, CustomTokenObtainSerializer, type_usersSerializer
 
 class usersViewSet(viewsets.ModelViewSet):
