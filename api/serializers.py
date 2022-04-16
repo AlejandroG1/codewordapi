@@ -1,4 +1,3 @@
-from dataclasses import field, fields
 from rest_framework import serializers
 from api.models import users
 from api.models import restaurants
