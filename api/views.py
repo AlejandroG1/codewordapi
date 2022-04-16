@@ -2,7 +2,7 @@
 from django import views
 from rest_framework import viewsets
 from rest_framework_simplejwt.tokens import RefreshToken
-from api.models import restaurants, users, menus, promotions, bookings, type_users
+from api.models import restaurants, users, menus, promotions, bookings
 from django.contrib.auth.models import Permission
 from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions
 from django.contrib.auth import authenticate
@@ -33,11 +33,6 @@ class usersViewSet(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated, ActualDjangoModelPermissions,]
         queryset = users.objects.all()
         serializer_class = usersSerializer
-
-class type_usersViewSet(viewsets.ModelViewSet):
-        permission_classes = [IsAuthenticated, ActualDjangoModelPermissions,]
-        queryset = type_users.objects.all()
-        serializer_class = type_usersSerializer
 
 class restaurantsViewSet(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated, ActualDjangoModelPermissions,]

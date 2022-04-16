@@ -56,6 +56,7 @@ class menus(models.Model):
     id = models.AutoField(primary_key=True)
     nombre_platillo = models.CharField(max_length=100)
     ingredientes = models.CharField(max_length=1024)
+    status = models.IntegerField(default = 1)
     restaurante_id = models.ForeignKey("restaurants", on_delete=models.CASCADE)
 
 class promotions(models.Model):
@@ -63,6 +64,7 @@ class promotions(models.Model):
     nombre_promocion = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=1024)
     promocion_image = models.ImageField('view',blank=True,upload_to="media")
+    status = models.IntegerField(default = 1)
     restaurante_id = models.ForeignKey("restaurants", on_delete=models.CASCADE)
     
 class bookings(models.Model):
@@ -75,16 +77,13 @@ class bookings(models.Model):
     dia_hora_booking = models.DateTimeField()
     solicitud_especial = models.CharField(max_length=1024)
     number_people = models.PositiveIntegerField()
+    status = models.IntegerField(default = 1)
     restaurante_id = models.ForeignKey("restaurants", on_delete=models.CASCADE)
 
 class restaurants(models.Model):
     id = models.AutoField(primary_key=True)
     name_restaurant = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=1024)
+    status = models.IntegerField(default = 1)
     restaurant_image = models.ImageField('view',blank=True,upload_to="media")
     
-
-class type_users(models.Model):
-    id = models.AutoField(primary_key=True)
-    id_user = models.ForeignKey("users", on_delete=models.CASCADE)
-    type_users = models.CharField(max_length=50)
