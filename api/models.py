@@ -35,7 +35,7 @@ class users(AbstractBaseUser,PermissionsMixin):
     email = models.CharField(max_length=255, unique=True)
     cellphone = models.IntegerField()
     username = models.CharField(max_length=15, unique=True, blank=False, null=False)
-    permission = models.ForeignKey("type_users", on_delete=models.CASCADE)
+    permission = models.ForeignKey("type_users", on_delete=models.CASCADE, default = 12)
 
     status = models.IntegerField(default = 1)
     is_active = models.BooleanField(default = True)
@@ -90,6 +90,5 @@ class restaurants(models.Model):
     
 class type_users(models.Model):
     id = models.AutoField(primary_key=True)
-    id_user = models.ForeignKey("users", on_delete=models.CASCADE)
     type_users = models.CharField(max_length=50)
 
