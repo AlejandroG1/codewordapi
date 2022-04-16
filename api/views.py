@@ -11,7 +11,7 @@ from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from api import envioCorreo
-from .serializers import menusSerializer,CustomusersSerializer, restaurantsSerializer, usersSerializer, promotionsSerializer, bookingsSerializer, CustomTokenObtainSerializer, type_usersSerializer, permSerial
+from .serializers import menusSerializer,CustomusersSerializer, restaurantsSerializer, usersSerializer, promotionsSerializer, bookingsSerializer, CustomTokenObtainSerializer, permSerial
 class ActualDjangoModelPermissions(DjangoModelPermissions):
     view_permissions = ['%(app_label)s.view_%(model_name)s']
     perms_map = {
