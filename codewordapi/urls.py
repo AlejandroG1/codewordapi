@@ -5,7 +5,7 @@ from django.urls import path, include, re_path
 from django.conf.urls.static import static
 from django.views.static import serve
 from api import views
-from api.views import login, logout
+from api.views import login, logout, register
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -13,6 +13,7 @@ from rest_framework_simplejwt.views import (
 )
 
 router = routers.DefaultRouter()
+router.register(r'permissions', views.permissionViewSet)
 router.register(r'users', views.usersViewSet)
 router.register(r'restaurants', views.restaurantsViewSet)
 router.register(r'menus', views.menusViewSet)
@@ -24,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('login/', login.as_view(), name= 'login'),
+    path("register/", register.as_view(), name="resgister"),
     path('logout/', logout.as_view(), name='logout'),
     #usar login path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),

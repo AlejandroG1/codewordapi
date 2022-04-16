@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
     'rest_framework_simplejwt.token_blacklist',
     'api',
     'corsheaders',
@@ -81,8 +83,8 @@ WSGI_APPLICATION = 'codewordapi.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
+# 
+#  # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 DATABASES = {
     "default": {
         'ENGINE': "mssql",
@@ -91,7 +93,7 @@ DATABASES = {
         'PASSWORD': "Admin1234",
         'HOST': "codeworddb.database.windows.net",
         'PORT': "1433",
-        'OPTIONS': {"driver": "ODBC Driver 17 for SQL Server", 
+        "OPTIONS": {"driver": "ODBC Driver 18 for SQL Server", 
         },
     },
 }
@@ -103,7 +105,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'mydatabase',
     }
-}"""
+} """
+
 
 
 
@@ -141,12 +144,11 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
@@ -162,9 +164,15 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+
 }
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'htcs2s30k',
+    'API_KEY': '217562668356884',
+    'API_SECRET': 'D29GmlVLWMA5AwZM8pdW9UV22LA'
+}
 #JWT SETTINGS
 
 SIMPLE_JWT = {
