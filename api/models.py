@@ -66,7 +66,7 @@ class promotions(models.Model):
     promocion_image = models.ImageField('view',blank=True,upload_to="media")
     status = models.IntegerField(default = 1)
     restaurante_id = models.ForeignKey("restaurants", on_delete=models.CASCADE)
-    
+
 class bookings(models.Model):
     id = models.AutoField(primary_key=True)
     restaurante_id = models.AutoField(primary_key=True)
@@ -87,3 +87,8 @@ class restaurants(models.Model):
     status = models.IntegerField(default = 1)
     restaurant_image = models.ImageField('view',blank=True,upload_to="media")
     
+class type_users(models.Model):
+    id = models.AutoField(primary_key=True)
+    id_user = models.ForeignKey("users", on_delete=models.CASCADE)
+    type_users = models.CharField(max_length=50)
+

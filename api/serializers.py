@@ -42,6 +42,7 @@ class usersSerializer(serializers.ModelSerializer):
             sixth_default_permission = Permission.objects.get(codename = 'change_bookings', content_type = second_Content_Type)
 
 
+
             user = users(**validated_data)
             user.set_password(validated_data['password'])
             user.save()
@@ -53,20 +54,25 @@ class menusSerializer(serializers.HyperlinkedModelSerializer):
         model = menus
         fields = ['id','nombre_platillo', 'ingredientes','status', 'restaurante_id']
 
+
 class promotionsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = promotions
         fields = ['id','nombre_promocion', 'descripcion','promocion_image', 'status','restaurante_id']
 
+
 class bookingsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = bookings
+
         fields = ['id','nombre_usuario', 'apellido_usuario', 'telefono', 'email', 'dia_hora_booking', 'solicitud_especial', 'number_people','status','restaurante_id']
+
 
 class restaurantsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = restaurants
         fields = ['id','name_restaurant', 'descripcion','status','restaurant_image']
+
 
 
 

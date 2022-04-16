@@ -29,6 +29,7 @@ class permissionViewSet(viewsets.ModelViewSet):
         queryset = Permission.objects.all()
         serializer_class = permSerial
 
+
 class usersViewSet(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated, ActualDjangoModelPermissions,]
         queryset = users.objects.all()
@@ -53,10 +54,7 @@ class bookingsViewSet(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated, ActualDjangoModelPermissions,]
         queryset = bookings.objects.all()
         serializer_class = bookingsSerializer
-
-
-
-
+        
 
 #ACCESOS
 class register(GenericAPIView):
