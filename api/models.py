@@ -21,11 +21,11 @@ class UsuarioManager(BaseUserManager):
         user.save(using=self.db)
         return user
     def create_user(self, name, last_name, email , username, cellphone ,password = None , **extra_fields):
-        return self._create_user(name, last_name, email ,username,cellphone ,password , True, False, 1, 1,  **extra_fields)
+        return self._create_user(name, last_name, email ,username,cellphone ,password , True, False, 12, 1,  **extra_fields)
 
 
     def create_superuser(self, name, last_name, email, username, cellphone, password = None ,**extra_fields):
-        return self._create_user(name, last_name, email ,username,cellphone ,password , True, True , 2, 2,  **extra_fields)
+        return self._create_user(name, last_name, email ,username,cellphone ,password , True, True , 12, 2,  **extra_fields)
 
 
 class users(AbstractBaseUser,PermissionsMixin):
