@@ -2,7 +2,7 @@
 from django import views
 from rest_framework import viewsets
 from rest_framework_simplejwt.tokens import RefreshToken
-from api.models import restaurants, users, menus, promotions, bookings
+from api.models import restaurants, users, menus, promotions, bookings, type_users
 from django.contrib.auth.models import Permission
 from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions
 from django.contrib.auth import authenticate
@@ -11,7 +11,7 @@ from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from api import envioCorreo
-from .serializers import menusSerializer,CustomusersSerializer, restaurantsSerializer, usersSerializer, promotionsSerializer, bookingsSerializer, CustomTokenObtainSerializer, permSerial
+from .serializers import menusSerializer,CustomusersSerializer, restaurantsSerializer, usersSerializer, promotionsSerializer, bookingsSerializer, CustomTokenObtainSerializer, type_usersSerializer, permSerial
 class ActualDjangoModelPermissions(DjangoModelPermissions):
     view_permissions = ['%(app_label)s.view_%(model_name)s']
     perms_map = {
@@ -29,11 +29,15 @@ class permissionViewSet(viewsets.ModelViewSet):
         queryset = Permission.objects.all()
         serializer_class = permSerial
 
-
 class usersViewSet(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated, ActualDjangoModelPermissions,]
         queryset = users.objects.all()
         serializer_class = CustomusersSerializer
+
+class type_usersViewSet(viewsets.ModelViewSet):
+        permission_classes = [IsAuthenticated, ActualDjangoModelPermissions,]
+        queryset = type_users.objects.all()
+        serializer_class = type_usersSerializer
 
 class restaurantsViewSet(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated, ActualDjangoModelPermissions,]
@@ -54,7 +58,10 @@ class bookingsViewSet(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated, ActualDjangoModelPermissions,]
         queryset = bookings.objects.all()
         serializer_class = bookingsSerializer
-        
+
+
+
+
 
 #ACCESOS
 class register(GenericAPIView):

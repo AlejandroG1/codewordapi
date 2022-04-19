@@ -6,6 +6,7 @@ from api.models import restaurants
 from api.models import menus
 from api.models import promotions
 from api.models import bookings
+from api.models import type_users
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -41,7 +42,6 @@ class usersSerializer(serializers.ModelSerializer):
             sixth_default_permission = Permission.objects.get(codename = 'change_bookings', content_type = second_Content_Type)
 
 
-
             user = users(**validated_data)
             user.set_password(validated_data['password'])
             user.save()
@@ -59,7 +59,6 @@ class promotionsSerializer(serializers.HyperlinkedModelSerializer):
 class bookingsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = bookings
-
         fields = ['id','nombre_usuario', 'apellido_usuario', 'telefono', 'email', 'dia_hora_booking', 'solicitud_especial', 'number_people','status','restaurante_id']
 class restaurantsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

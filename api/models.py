@@ -21,11 +21,11 @@ class UsuarioManager(BaseUserManager):
         user.save(using=self.db)
         return user
     def create_user(self, name, last_name, email , username, cellphone ,password = None , **extra_fields):
-        return self._create_user(name, last_name, email ,username,cellphone ,password , True, False, 1, 1,  **extra_fields)
+        return self._create_user(name, last_name, email ,username,cellphone ,password , True, False, 12, 1,  **extra_fields)
 
 
     def create_superuser(self, name, last_name, email, username, cellphone, password = None ,**extra_fields):
-        return self._create_user(name, last_name, email ,username,cellphone ,password , True, True , 2, 2,  **extra_fields)
+        return self._create_user(name, last_name, email ,username,cellphone ,password , True, True , 12, 2,  **extra_fields)
 
 
 class users(AbstractBaseUser,PermissionsMixin):
@@ -35,7 +35,8 @@ class users(AbstractBaseUser,PermissionsMixin):
     email = models.CharField(max_length=255, unique=True)
     cellphone = models.IntegerField()
     username = models.CharField(max_length=15, unique=True, blank=False, null=False)
-    permission = models.IntegerField(default = 1)
+    permission = models.ForeignKey("type_users", on_delete=models.CASCADE, default = 12)
+
     status = models.IntegerField(default = 1)
     is_active = models.BooleanField(default = True)
     is_staff = models.BooleanField(default = False)
@@ -89,6 +90,5 @@ class restaurants(models.Model):
     
 class type_users(models.Model):
     id = models.AutoField(primary_key=True)
-    id_user = models.ForeignKey("users", on_delete=models.CASCADE)
     type_users = models.CharField(max_length=50)
 
