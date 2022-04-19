@@ -1,18 +1,20 @@
+import email
+from email.mime import image
+import imghdr
+
 def __init__(data):
     import smtplib
     from email.message import EmailMessage  
-    EMAIL_ADDRESS = 'bellastarhotel117@gmail.com'
+    EMAIL_ADDRESS =  'bellastarhotel117@gmail.com'
     EMAIL_PASSWORD = 'Sistemas106'
     data=data
 #contacts = ['YourAddress@gmail.com', 'test@example.com']
     
     msg = EmailMessage()
     msg['Subject'] = 'Correo de confirmacion de Reservacion'
-    msg['From'] = EMAIL_ADDRESS
+    msg['From'] = 'Cristian Mendoza <{EMAIL_ADDRESS}>'
     msg['To'] = data.email
-
-    msg.set_content('This is a plain text email')
-
+    msg.set_content('This is a plain text email')        
     msg.add_alternative("""\
     <!DOCTYPE html>
     <html>
@@ -24,13 +26,19 @@ def __init__(data):
     <p><span class="il">BellaStar</span><br>
     +994306007<br>
     <a href="https://josemanuel286.github.io/Proyecto-Hotel-Bellastar/index.html" target="_blank" data-saferedirecturl="https://josemanuel286.github.io/Proyecto-Hotel-Bellastar/index.html">Hotel Bellastar</a></p><div class="yj6qo"></div><div class="adL">
-
+    <img src="'D:\\Xampp\\htdocs\\CodeWorldApi\\api\\logoBellastar.jpg','rb'" alt="Trulli" width="500" height="333">
     </div></div></div>
         </body>
     </html>
-    """.format(nombre=data.nombre, apellido=data.apellido), subtype='html')
-
-
+    """.format(nombre=data.nombre, apellido=data.apellido, imagen= 'D:\\Xampp\\htdocs\\CodeWorldApi\\api\\logoBellastar.jpg'), subtype='html')
+    
+        
+    with open('D:\\Xampp\\htdocs\\CodeWorldApi\\api\\logoBellastar.jpg','rb') as f:
+        file_data = f.read()
+        file_type = imghdr.what(f.name)
+        file_name = f.name
+    msg.add_attachment(file_data, maintype='image', subtype= file_type, filename=file_name)
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+        
         smtp.send_message(msg)
