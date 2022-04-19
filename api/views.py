@@ -33,7 +33,7 @@ class permissionViewSet(viewsets.ModelViewSet):
 class usersViewSet(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated, ActualDjangoModelPermissions,]
         queryset = users.objects.all()
-        serializer_class = usersSerializer
+        serializer_class = CustomusersSerializer
 
 class restaurantsViewSet(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated, ActualDjangoModelPermissions,]

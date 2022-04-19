@@ -1,5 +1,7 @@
+from dataclasses import fields
+from msilib.schema import Class
 from rest_framework import serializers
-from api.models import users
+from api.models import type_users, users
 from api.models import restaurants
 from api.models import menus
 from api.models import promotions
@@ -12,19 +14,17 @@ class permSerial(serializers.ModelSerializer):
     class Meta:
         model = Permission
         fields = '__all__'
-
 class CustomTokenObtainSerializer(TokenObtainPairSerializer): 
     pass
-
 class CustomusersSerializer(serializers.ModelSerializer):
     class Meta:
         model =users
-        fields = ['username', 'email', 'name']
-
+        fields = ['id', 'username', 'email','name', 'last_name', 'cellphone']
 class usersSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = users
-        fields = '__all__'
+        fields = 'name'
         
 
     def create(self, validated_data):
@@ -52,26 +52,23 @@ class menusSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = menus
         fields = ['id','nombre_platillo', 'ingredientes','status', 'restaurante_id']
-
-
 class promotionsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = promotions
         fields = ['id','nombre_promocion', 'descripcion','promocion_image', 'status','restaurante_id']
-
-
 class bookingsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = bookings
 
         fields = ['id','nombre_usuario', 'apellido_usuario', 'telefono', 'email', 'dia_hora_booking', 'solicitud_especial', 'number_people','status','restaurante_id']
-
-
 class restaurantsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = restaurants
         fields = ['id','name_restaurant', 'descripcion','status','restaurant_image']
-
+class type_usersSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = type_users
+        fields = ['id','id_user','status', 'type_users']
 
 
 
