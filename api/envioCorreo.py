@@ -30,7 +30,7 @@ def __init__(data):
     </div></div></div>
         </body>
     </html>
-    """.format(nombre=data.nombre, apellido=data.apellido, imagen= 'D:\\Xampp\\htdocs\\CodeWorldApi\\api\\logoBellastar.jpg'), subtype='html')
+    """.format(nombre=data.nombre_usuario, apellido=data.apellido_usuario, imagen= 'D:\\Xampp\\htdocs\\CodeWorldApi\\api\\logoBellastar.jpg'), subtype='html')
     
         
     with open('D:\\Xampp\\htdocs\\CodeWorldApi\\api\\logoBellastar.jpg','rb') as f:

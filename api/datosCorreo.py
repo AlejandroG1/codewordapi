@@ -1,8 +1,8 @@
 import envioCorreo
 class Data:
-    email='cristian.mendoza.s@hotmail.com'
-    nombre='Esmeralda'
-    apellido='May'
+    email='andy_lmfao@hotmail.com'
+    nombre='Andy'
+    apellido='Calan'
 envioCorreo.__init__(data=Data())
     
     

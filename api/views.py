@@ -10,7 +10,6 @@ from rest_framework.response import Response
 from rest_framework import status 
 from rest_framework.generics import GenericAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView
-from api import envioCorreo
 from .serializers import menusSerializer,CustomusersSerializer, restaurantsSerializer, usersSerializer, promotionsSerializer, bookingsSerializer, CustomTokenObtainSerializer, type_usersSerializer, permSerial
 class ActualDjangoModelPermissions(DjangoModelPermissions):
     view_permissions = ['%(app_label)s.view_%(model_name)s']
@@ -58,6 +57,7 @@ class bookingsViewSet(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated, ActualDjangoModelPermissions,]
         queryset = bookings.objects.all()
         serializer_class = bookingsSerializer
+        
 
 
 
