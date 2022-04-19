@@ -27,7 +27,6 @@ class usersSerializer(serializers.ModelSerializer):
         model = users
         fields = '__all__'
         
-
     def create(self, validated_data):
             first_Content_Type = ContentType.objects.get_for_model(restaurants)
             second_Content_Type = ContentType.objects.get_for_model(bookings)
